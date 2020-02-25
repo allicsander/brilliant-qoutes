@@ -1,1 +1,1 @@
-# brilliant qoutes
+# brilliant quotes
