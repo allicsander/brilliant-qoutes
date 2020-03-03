@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+      <app-header :quoteCount="quotes.length" :maxQuotes="maxQuotes"></app-header>
       <app-new-quote @quoteAdded="newQuote"></app-new-quote>
       <app-quote-grid :quotes="quotes" @quoteDeleted="deleteBrilliantQuote"></app-quote-grid>
       <div class="rom">
@@ -15,18 +16,21 @@
 <script>
 import QuoteGrid from './components/QuotesGrid.vue';
 import NewQuote from './components/NewQuote.vue';
+import Header from './components/Header.vue';
 
     export default {
         data() {
           return{
               quotes: ['be sexy', 'be strong'],
-              maxQoutes: 10
+              maxQuotes: 10
           } 
         
         },
         methods:{
           newQuote(quote){
-            this.quotes.push(quote);
+            if(this.quotes.length < 10){
+              this.quotes.push(quote);
+            }
           },
           deleteBrilliantQuote(index){
             this.quotes.splice(index, 1);
@@ -34,7 +38,8 @@ import NewQuote from './components/NewQuote.vue';
         },
         components:{
           appQuoteGrid: QuoteGrid,
-          appNewQuote: NewQuote
+          appNewQuote: NewQuote,
+          appHeader: Header
         }
 
     }
