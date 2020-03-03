@@ -1,7 +1,14 @@
 <template>
     <div class="container">
       <app-new-quote @quoteAdded="newQuote"></app-new-quote>
-      <app-quote-grid :quotes="quotes"></app-quote-grid>
+      <app-quote-grid :quotes="quotes" @quoteDeleted="deleteBrilliantQuote"></app-quote-grid>
+      <div class="rom">
+        <div class="col-sm-12 text-center">
+          <div class="alert alert-info">
+            tip: click on a quote to delete it
+          </div>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -20,6 +27,9 @@ import NewQuote from './components/NewQuote.vue';
         methods:{
           newQuote(quote){
             this.quotes.push(quote);
+          },
+          deleteBrilliantQuote(index){
+            this.quotes.splice(index, 1);
           }
         },
         components:{
